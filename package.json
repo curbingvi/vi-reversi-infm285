@@ -1,0 +1,26 @@
+{
+  "name": "vi-reversi",
+  "version": "1.0.0",
+  "description": "This is a web app for the game Reversi",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/curbingvi/vi-reversi-infm285.git"
+  },
+  "keywords": [
+    "Reversi"
+  ],
+  "author": "Vi Chetan",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/curbingvi/vi-reversi-infm285/issues"
+  },
+  "homepage": "https://github.com/curbingvi/vi-reversi-infm285#readme",
+  "dependencies": {
+    "node-static": "^0.7.11",
+    "socket.io": "^2.3.0"
+  }
+}
