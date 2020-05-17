@@ -9,14 +9,6 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <!-- JS -->
-    <script>
-      function submitForm(){
-        var username = $('#username').val();
-        window.location.href = 'lobby.html?username='+username;
-      }
-    </script>
-
   </head>
   <body>
 
@@ -25,7 +17,7 @@
       <!--Header-->
       <div class="row" style="background-color: #f1f1f1" id="header-row">
         <div class="col">
-          <h2>Enter your username</h2>
+          <h2>This is the lobby</h2>
         </div>
       </div>
       <!--End Header-->
@@ -34,7 +26,7 @@
       <div class='row'>
 
         <div class='col'>
-          <form class='form-inline' onsubmit='submitForm(); return false'>
+          <form class='form-inline'>
             <div class='form-group'>
               <label for='username' class='col-form-label sr-only'>Enter a username</label>
               <input id='username' placeholder='Enter a username' type='text' class='form-control'></input>

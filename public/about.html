@@ -1,50 +1,45 @@
 <!doctype html>
 <html lang="en">
   <head>
-
+    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Enter your username for Reversi</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <!-- JS -->
-    <script>
-      function submitForm(){
-        var username = $('#username').val();
-        window.location.href = 'lobby.html?username='+username;
-      }
-    </script>
-
+    <title>Hello, world!</title>
   </head>
   <body>
 
     <div class="container-fluid text-center">
        
       <!--Header-->
-      <div class="row" style="background-color: #f1f1f1" id="header-row">
+      <div class="row" style="background-color: #f1f1f1">
         <div class="col">
-          <h2>Enter your username</h2>
+          <img src="assets/img/second-logo.svg" class="img-fluid my-5" alt="Second reversi logo"/>
         </div>
       </div>
-      <!--End Header-->
-
-      <!-- Form -->
-      <div class='row'>
-
-        <div class='col'>
-          <form class='form-inline' onsubmit='submitForm(); return false'>
-            <div class='form-group'>
-              <label for='username' class='col-form-label sr-only'>Enter a username</label>
-              <input id='username' placeholder='Enter a username' type='text' class='form-control'></input>
-            </div>
-            <button type='submit' class='btn btn-default btn-primary'>Done</button>
-          </form>
+      <!--End Header-->  
+       
+      <!--Description-->
+      <div class="row justify-content-md-center">
+        <div class="col-4 my-5">
+          <h2><strong>About</strong></h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc a laoreet nulla, vitae cursus justo. Nunc lacinia sapien vel lobortis cursus. Phasellus fermentum risus id ex pellentesque congue. Nulla rhoncus rhoncus mi. Proin egestas elit sed elit dignissim, a egestas eros gravida. Donec ut blandit quam. Aliquam feugiat tincidunt erat, eu dictum neque dictum ut.</p>
         </div>
-
       </div>
-      <!-- End form -->
+      <!--End Button Row-->
+
+
+      <!-- Two button row -->
+      <div class="row justify-content-md-center" >
+        <div class="col-md-auto my-5">
+          <a href="https://en.wikipedia.org/wiki/Reversi" class="btn btn-lg btn-outline-primary">Rules</a>
+          <a href="index.html" class="btn btn-lg btn-outline-primary">Home</a>
+        </div>
+      </div>
+      <!-- End two button row -->
 
     </div>
 
