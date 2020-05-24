@@ -51,21 +51,21 @@ socket.on('join_room_response', function(payload){
     if(dom_elements.length == 0){
 
         // Socket Assignment
-        var nodeA = $('<div></div>');
+        var nodeA = $('<div></div');
         nodeA.addClass('socket_'+payload.socket_id);
 
-        var nodeB = $('<div></div>');
+        var nodeB = $('<div></div');
         nodeB.addClass('socket_'+payload.socket_id);
 
-        var nodeC = $('<div></div>');
+        var nodeC = $('<div></div');
         nodeC.addClass('socket_'+payload.socket_id);
 
         // Style Assignment
 
         nodeA.addClass('w-100');
 
-        nodeB.addClass('col-9');
-        nodeB.append('<h6>'+payload.username+'</h6>');
+        nodeB.addClass('col-9 text-right');
+        nodeB.append('<h4>'+payload.username+'</h4>');
 
         nodeC.addClass ('col-3 text-left');
         var buttonC = makeInviteButton();
@@ -129,6 +129,7 @@ socket.on('player_disconnected', function(payload){
     newNode.hide();
     $('#messages').append(newNode);
     newNode.slideDown(1000);
+
 
 });
 

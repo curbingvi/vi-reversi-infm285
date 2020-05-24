@@ -20,47 +20,37 @@
           <h4>Lobby</h4>
         </div>
       </div>
-      <!--End heade-->
+
+      <!-- Player List : All new players populate here-->
+      <div class='row align-items-end' id='players'>
+        <div class='col-9 text-left'>
+          <h3>Players</h3>
+        </div>
+        <div class='col-3'>
+          
+        </div>
+      </div>
 
       <!-- Messages -->
       <div class='row mt-4 justify-content-md-center'>
         <div class='col-lg-8'>
           <h3>Messages</h3>
           <div id='messages' class='my-3 p-2' style='background-color: #f1f1f1; min-height: 100px; max-height: 600px; overflow-y: scroll;'></div>
-
-          <!-- Form -->
-          <div class='row justify-content-md-center'>
-            <div class='col-lg-12'>
-              <form onsubmit='send_message(); return false'>
-                <div class='form-group' style='background-color: #f1f1f1'>
-                    <label for='send_message_holder' class='col-form-label sr-only'>Enter your chat message</label>
-                    <input class='form-control' type='text' value='' id='send_message_holder' placeholder='Enter your Chat message' autocomplete='off'/>
-                </div>
-                <button type='submit' class='btn btn-default btn-primary'>Send</button>
-              </form>
-            </div>
-          </div>
-          <!--End Form-->
-
         </div>
-
-        <!-- Player List : All new players populate here-->
-        <div class='col-4'>
-          <h3>Players</h3>
-
-          <!-- Player list -->
-          <div class="row">
-            <div class='col-3'  id='players'>
-              
-            </div>
-          </div>
-          <!-- End player list -->
-        </div>
-
       </div>
-      <!--End Messages-->
 
-      
+      <!-- Form -->
+      <div class='row justify-content-md-center'>
+        <div class='col-lg-8'>
+          <form onsubmit='send_message(); return false'>
+            <div class='form-group' style='background-color: #f1f1f1'>
+                <label for='send_message_holder' class='col-form-label sr-only'>Enter your chat message</label>
+                <input class='form-control' type='text' value='' id='send_message_holder' placeholder='Enter your Chat message' autocomplete='off'/>
+            </div>
+            <button type='submit' class='btn btn-default btn-primary'>Send</button>
+          </form>
+        </div>
+      </div>
 
     </div>
 
