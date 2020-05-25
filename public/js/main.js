@@ -68,7 +68,7 @@ socket.on('join_room_response', function(payload){
         nodeB.append('<h4>'+payload.username+'</h4>');
 
         nodeC.addClass ('col-3 text-left');
-        var buttonC = makeInviteButton();
+        var buttonC = makeInviteButton(payload.socket_id);
         nodeC.append(buttonC);
 
         // Hide nodes so we can trigger appear
@@ -86,7 +86,7 @@ socket.on('join_room_response', function(payload){
     // When someone has joined and a row already exists, making sure the row appears correctly
 
     else {
-        var buttonC = makeInviteButton();
+        var buttonC = makeInviteButton(payload.socket_id);
         $('.socket_'+payload.socket_id+'button').replaceWith(buttonC);
         dom_elements.slideDown(1000);
     }
@@ -133,6 +133,39 @@ socket.on('player_disconnected', function(payload){
 
 });
 
+// Inviting a player
+
+function invite(who){
+    var payload = {};
+    payload.requested_user = who;
+
+    console.log('*** Client log message: \'invite\' payload: '+JSON.stringify(payload));
+    socket.emit('invite',payload);
+};
+
+// Change button to "invite"
+
+socket.on('invited_response', function(payload){
+    if(payload.result === 'fail'){
+        alert(payload.message);
+        return;
+    }
+
+    var newNode = makeInvitedButton();
+    $('.socket_'+payload.socket_id+' button').replaceWith(newNode);
+});
+
+// When user receives an invite
+
+socket.on('invited', function(payload){
+    if(payload.result === 'fail'){
+        alert(payload.message);
+        return;
+    }
+
+    var newNode = makePlayButton();
+    $('.socket_'+payload.socket_id+'button').replaceWith(newNode);
+});
 
 // End when someone leaves a room 
 
@@ -156,8 +189,35 @@ function send_message(){
 
 // Make invite button function
 
-function makeInviteButton(){
+function makeInviteButton(socket_id){
     var newHTML = '<button type=\'button\' class=\'btn btn-outline-primary\'>Invite</button>';
+    var newNode = $(newHTML);
+    newNode.click(function(){
+        invite(socket_id);
+    });
+    return(newNode);
+};
+
+// Make invited button function
+
+function makeInvitedButton(){
+    var newHTML = '<button type=\'button\' class=\'btn btn-primary\'>Invited</button>';
+    var newNode = $(newHTML);
+    return(newNode);
+};
+
+// Make play button function
+
+function makePlayButton(){
+    var newHTML = '<button type=\'button\' class=\'btn btn-success\'>Play</button>';
+    var newNode = $(newHTML);
+    return(newNode);
+};
+
+// Make engaged button function
+
+function makeEngageButton(){
+    var newHTML = '<button type=\'button\' class=\'btn btn-danger\'>Engaged</button>';
     var newNode = $(newHTML);
     return(newNode);
 }
