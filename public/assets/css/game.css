@@ -1,0 +1,24 @@
+table#game_board {
+	margin: auto;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #4a4a4a;
+}
+
+table#game_board td {
+	padding: 5px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #4a4a4a;
+}
+
+#messages p {
+	margin: 0px;
+
+}
+
+td.hovered_over:hover {
+	background: url('../img/gif/hover.gif'), rgb(255,255,255);
+	background-size: 100% 100%;
+	
+}

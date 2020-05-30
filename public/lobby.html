@@ -21,36 +21,48 @@
         </div>
       </div>
 
-      <!-- Player List : All new players populate here-->
-      <div class='row align-items-end' id='players'>
-        <div class='col-9 text-left'>
-          <h3>Players</h3>
-        </div>
-        <div class='col-3'>
-          
-        </div>
-      </div>
-
-      <!-- Messages -->
+      <!-- Content Row -->
       <div class='row mt-4 justify-content-md-center'>
-        <div class='col-lg-8'>
-          <h3>Messages</h3>
-          <div id='messages' class='my-3 p-2' style='background-color: #f1f1f1; min-height: 100px; max-height: 600px; overflow-y: scroll;'></div>
-        </div>
-      </div>
 
-      <!-- Form -->
-      <div class='row justify-content-md-center'>
-        <div class='col-lg-8'>
-          <form onsubmit='send_message(); return false'>
-            <div class='form-group' style='background-color: #f1f1f1'>
-                <label for='send_message_holder' class='col-form-label sr-only'>Enter your chat message</label>
-                <input class='form-control' type='text' value='' id='send_message_holder' placeholder='Enter your Chat message' autocomplete='off'/>
+        <!-- Messages -->
+        <div class='col col-lg-8'>
+          <div class='col-lg-12'>
+            <h4>Messages</h4>
+            <!-- Form -->
+            <div class='row'>
+              <div class='col'>
+                <form onsubmit='send_message(); return false' class='form-inline'>
+                  <div class='w-75 '>
+                      <label for='send_message_holder' class='col-form-label sr-only'>Enter your chat message</label>
+                      <input class='form-control mb-2 mr-sm-2 w-100' type='text' value='' id='send_message_holder' placeholder='Enter your Chat message' autocomplete='off'/>
+                  </div>
+                  <button type='submit' class='btn btn-default btn-primary mb-2 ml-2'>Send</button>
+                </form>
+              </div>
             </div>
-            <button type='submit' class='btn btn-default btn-primary'>Send</button>
-          </form>
+            <!-- End Form -->
+
+            <!-- Messages -->
+            <div id='messages' class='my-3 p-2' style='background-color: #f1f1f1; min-height: 100px; max-height: 600px; overflow-y: scroll;'></div>
+            <!-- End messages -->
+
+          </div>
         </div>
+
+        <!-- Player List : All new players populate here-->
+        <div class='col col-lg-4'>
+          <h4>Players</h4>
+          <div class='row mt-4 justify-content-md-center' id='players'>
+            <div class='col-lg-12'>
+              
+            </div>
+          </div>
+        </div>
+
       </div>
+      <!-- End Row -->
+
+      
 
     </div>
 
