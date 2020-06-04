@@ -13,49 +13,58 @@
   <body>
 
     <div class='container-fluid'>
-       
-      <!--Header-->
-      <div class='row text-center' style='background-color: #f1f1f1' id='header-row'>
-        <div class='col my-5'>
-          <h4>Lobby</h4>
+
+      <div class="row text-center" style="background-color: #f1f1f1" id="header-row">
+        <div class="col col-2 my-5">
+          <a href="index.html">Home</a>
+        </div>
+        <div class="col col-8 my-5 align-middle">
+          <span class="align-middle"><h4>Lobby</h4></span>
         </div>
       </div>
+       
+      <!--Header-->
+      <!-- <div class='row' style='background-color: #f1f1f1' id='header-row'>
+        <div class='col-2 py-2'>
+          
+        </div>
+        <div class="col-6 py-4 text-center">
+          <p class="font-weight-bold">Enter your username</p>
+        </div>
+      </div> -->
 
       <!-- Content Row -->
       <div class='row mt-4 justify-content-md-center'>
 
-        <!-- Messages -->
-        <div class='col col-lg-8'>
-          <div class='col-lg-12'>
-            <h4>Messages</h4>
-            <!-- Form -->
-            <div class='row'>
-              <div class='col'>
-                <form onsubmit='send_message(); return false' class='form-inline'>
-                  <div class='w-75 '>
-                      <label for='send_message_holder' class='col-form-label sr-only'>Enter your chat message</label>
-                      <input class='form-control mb-2 mr-sm-2 w-100' type='text' value='' id='send_message_holder' placeholder='Enter your Chat message' autocomplete='off'/>
-                  </div>
-                  <button type='submit' class='btn btn-default btn-primary mb-2 ml-2'>Send</button>
-                </form>
-              </div>
+        <!-- Player List : All new players populate here-->
+        <div class='col col-lg-4 col-md-12 col-sm-12'>
+          <h5>Players</h5>
+          <div class='row mt-4 justify-content-md-center' id='players'>
+            <div class='col-lg-12 col-md-12 col-sm-12'>
+              
             </div>
-            <!-- End Form -->
+          </div>
+        </div>
 
+        <!-- Messages -->
+        <div class='col col-lg-8 col-md-12 col-sm-12 px-0'>
+          <div class='col-lg-12 col-md-12 col-sm-12'>
+            <h5>Messages</h5>
+            <div class="col-12 px-0">
+              <form onsubmit='send_message(); return false;' class='form-inline'>
+                <div class="form-group col-10 px-0">
+                  <label for='send_message_holder' class='col-form-label sr-only'>Enter your chat message</label>
+                  <input class='form-control w-100' type='text' value='' id='send_message_holder' placeholder='Enter your Chat message' autocomplete='off'/>
+                </div>
+                <div class="col-2 px-0">
+                  <button type='submit' class='btn btn-default btn-primary ml-1 w-100'>Send</button>
+                </div>
+              </form>
+            </div>
             <!-- Messages -->
             <div id='messages' class='my-3 p-2' style='background-color: #f1f1f1; min-height: 100px; max-height: 600px; overflow-y: scroll;'></div>
             <!-- End messages -->
 
-          </div>
-        </div>
-
-        <!-- Player List : All new players populate here-->
-        <div class='col col-lg-4'>
-          <h4>Players</h4>
-          <div class='row mt-4 justify-content-md-center' id='players'>
-            <div class='col-lg-12'>
-              
-            </div>
           </div>
         </div>
 

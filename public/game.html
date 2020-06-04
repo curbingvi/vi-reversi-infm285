@@ -17,49 +17,48 @@
   <body>
 
     <div class='container-fluid'>
+
+      <!-- Quit button -->
+      <div class='row text-center' style='background-color: #f1f1f1'>
+        
+      </div>
        
       <!--Header-->
-      <div class='row text-center' style='background-color: #f1f1f1' id='header-row'>
-        <div class='col my-5'>
-          <h4>Reversi Game</h4>
+      <div class='row' style='background-color: #f1f1f1' id='header-row'>
+        <div class='col-6 py-2'>
+           <div class="btn btn-link disabled" aria-disabled="true">Elapsed Time: <span id="elapsed"></span></div>
+        </div>
+        <div class='col-6 py-2 text-right'>
+          <div id='quit'></div>
         </div>
       </div>
 
       <!-- User information row -->
       <div class='row'>
-        <div class='col offset-2 text-center'>
-          <h3 id='my_color'></h3>
-        </div>
-        <div class='col-2'>
-          <div id='quit'></div>
+        <div class='col-8 offset-2 text-center'>
+          <div id='my_color'></div>
         </div>
       </div>
-
-      <!-- Scores -->
-      <div class='row'>
-        <div class='col'>
-          <span class='align-middle' id='whitesum'></span>
-          <img src='assets/img/gif/empty-to-white.gif' alt="white score">
-          <img src='assets/img/gif/empty-to-black.gif' alt="black score">
-          <span class='align-middle' id='blacksum'></span>
-        </div>
-        <div class='col-2'>
-          <div id='quit'></div>
-        </div>
-      </div>
-
-      <div class='row'>
-        <div class='col' id='game_over'></div>
-      </div>
-
-      
 
       <!-- Content Row -->
       <div class='row mt-4 justify-content-md-center'>
 
         <!-- Game board here-->
-        <div class='col col-lg-8 col-md-12'>
-          <h4></h4>
+        <div class='col col-lg-6 col-md-12'>
+
+          <!-- Scores -->
+          <div class='row text-center mb-3'>
+            <div class='col'>
+              <span class='align-middle' id='whitesum'></span>
+              <img src='assets/img/gif/empty-to-white.gif' alt="white score">
+              <img src='assets/img/gif/empty-to-black.gif' alt="black score">
+              <span class='align-middle' id='blacksum'></span>
+            </div>
+          </div>
+
+          <div class='row my-3 text-center'>
+            <div class='col' id='game_over'></div>
+          </div>
 
           <!-- Gameboard -->
           <div class='row'>
@@ -154,27 +153,26 @@
 
         <!-- Messages -->
         <div class='col col-lg-4 col-md-12'>
-          <div class='col-lg-12'>
-            <h4 class='mt-md-3 mt-sm-3'>Messages</h4>
-            <!-- Form -->
-            <div class='row'>
-              <div class='col'>
-                <form onsubmit='send_message(); return false' class='form-inline'>
-                  <div class='w-75 '>
-                      <label for='send_message_holder' class='col-form-label sr-only'>Enter your chat message</label>
-                      <input class='form-control mb-2 mr-sm-2 w-100' type='text' value='' id='send_message_holder' placeholder='Enter your Chat message' autocomplete='off'/>
-                  </div>
-                  <button type='submit' class='btn btn-default btn-primary mb-2 ml-2'>Send</button>
-                </form>
-              </div>
-            </div>
-            <!-- End Form -->
 
+            <h5 class='mt-md-3 mt-sm-3'>Messages</h5>
             <!-- Messages -->
             <div id='messages' class='my-3 p-2' style='background-color: #f1f1f1; min-height: 100px; max-height: 600px; overflow-y: scroll;'></div>
             <!-- End messages -->
 
-          </div>
+            <!-- Form -->
+            <div class="col-12 px-0">
+              <form onsubmit='send_message(); return false;' class='form-inline'>
+                <div class="form-group col-10 px-0">
+                  <label for='send_message_holder' class='col-form-label sr-only'>Enter your chat message</label>
+                  <input class='form-control w-100' type='text' value='' id='send_message_holder' placeholder='Enter your Chat message' autocomplete='off'/>
+                </div>
+                <div class="col-2 px-0">
+                  <button type='submit' class='btn btn-default btn-primary ml-1 w-100'>Send</button>
+                </div>
+              </form>
+            </div>
+            <!-- End Form -->
+
         </div>
 
       </div>

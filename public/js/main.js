@@ -64,8 +64,8 @@ socket.on('join_room_response', function(payload){
 
         nodeA.addClass('w-100');
 
-        nodeB.addClass('col-9 text-right');
-        nodeB.append('<h4>'+payload.username+'</h4>');
+        nodeB.addClass('row col-9');
+        nodeB.append('<div class="alert alert-secondary w-100" style="padding:.5rem 1rem">'+payload.username+'</div>');
 
         nodeC.addClass ('col-3 text-left');
         var buttonC = makeInviteButton(payload.socket_id);
@@ -94,7 +94,7 @@ socket.on('join_room_response', function(payload){
 
     // Manage the message "new player has joined"
 
-    var newHTML = '<p>'+payload.username+' just entered room. </p>';
+    var newHTML = '<p class="font-weight-bold" style="color: #28a745">'+payload.username+' just entered room. </p>';
     var newNode = $(newHTML);
     newNode.hide();
     $('#messages').prepend(newNode);
@@ -125,7 +125,7 @@ socket.on('player_disconnected', function(payload){
 
     // Manage the message "new player has left"
 
-    var newHTML = '<p>'+payload.username+' just left room. </p>';
+    var newHTML = '<p class="text-muted">'+payload.username+' just left room. </p>';
     var newNode = $(newHTML);
     newNode.hide();
     $('#messages').prepend(newNode);
@@ -224,7 +224,7 @@ socket.on('game_start', function(payload){
     $('.socket_'+payload.socket_id+' button').replaceWith(newNode);
 
     //Jump to a new page
-    window.location.href = 'game.html?username='+username+' &game_id='+payload.game_id;
+    window.location.href = 'game.html?username='+username+'&game_id='+payload.game_id;
 });
 
 
@@ -257,7 +257,7 @@ socket.on('send_message_response', function(payload){
 // Make invite button function
 
 function makeInviteButton(socket_id){
-    var newHTML = '<button type=\'button\' class=\'btn btn-outline-primary\'>Invite</button>';
+    var newHTML = '<button type=\'button\' class=\'btn btn-lg btn-outline-success btn-block\' style=\'font-size:1rem;\'>Invite</button>';
     var newNode = $(newHTML);
     newNode.click(function(){
         invite(socket_id);
@@ -303,7 +303,7 @@ $(function(){
     console.log('*** Client Log Message: \'join_room\' payload: '+JSON.stringify(payload));
     socket.emit('join_room', payload);
 
-    $('#quit').append('<a href="lobby.html?username='+username+'"class="btn btn-danger btn-default active" role="button" aria-pressed="true">Quit</a>')
+    $('#quit').append('<a href="lobby.html?username='+username+'"class="btn btn-link" role="button" aria-pressed="true">Quit</a>')
 }); 
 
 
@@ -322,6 +322,7 @@ var old_board = [
 ];
 
 var my_color = ' ';
+var interval_timer;
 
 socket.on('game_update' ,function(payload){
 
@@ -358,7 +359,27 @@ socket.on('game_update' ,function(payload){
         return;
     }
 
-    $('#my_color').html('<h3 id="my_color">I am '+my_color+'</h3>');
+    $('#my_color').html('<h5 id="my_color" class="mt-3"><span class="badge-info badge badge-pill text-capitalize">My token color: '+my_color+'</span></h5>');
+    $('#my_color').append('<div class="alert alert-info text-capitalize" role="alert">'+payload.game.whose_turn+' player\'s turn.</div>');
+
+    clearInterval(interval_timer);
+    interval_timer = setInterval(function(last_time){
+            return function(){
+                // Do the work of updating the UI
+
+                var d = new Date();
+                var elapsedmilli = d.getTime() - last_time;
+                var minutes = Math.floor(elapsedmilli / (60 * 1000));
+                var seconds = Math.floor((elapsedmilli % (60 * 1000)) / 1000);
+
+                if(seconds < 10){
+                    $('#elapsed').html(minutes+':0'+seconds)
+                }
+                else{
+                    $('#elapsed').html(minutes+':'+seconds)
+                }
+
+        }} (payload.game.last_move_time), 1000);
     
 
 
@@ -410,22 +431,26 @@ socket.on('game_update' ,function(payload){
                     $('#'+row+'_'+column).html('<img src="assets/img/gif/black-to-empty.gif" alt="empty square" />');
                 }
 
-                else if(old_board[row][column] == 'b' && board[row][column] == ' '){
+                else if(old_board[row][column] == 'w' && board[row][column] == 'b'){
                     $('#'+row+'_'+column).html('<img src="assets/img/gif/white-to-black.gif" alt="black square" />');
                 }
 
-                else if(old_board[row][column] == 'b' && board[row][column] == ' '){
+                else if(old_board[row][column] == 'b' && board[row][column] == 'w'){
                     $('#'+row+'_'+column).html('<img src="assets/img/gif/black-to-white.gif" alt="white square" />');
                 }
 
                 else{
-                    $('#'+row+'_'+column).html('<img src="assets/img/gif/error.gif" alt="error" />')
+                    $('#'+row+'_'+column).html('<img src="assets/img/gif/error-state.gif" alt="error" />')
                 }
+            }
 
-                // Add some interactivity
+            // Add some interactivity
 
-                $('#'+row+'_'+column).off('click');
-                if(board[row][column] == ' '){
+            $('#'+row+'_'+column).off('click');
+            $('#'+row+'_'+column).removeClass('hovered_over');
+
+            if(payload.game.whose_turn === my_color){
+                if(payload.game.legal_moves[row][column] === my_color.substr(0,1)){
                     $('#'+row+'_'+column).addClass('hovered_over');
                     $('#'+row+'_'+column).click(function(r,c){
                         return function(){
@@ -437,10 +462,6 @@ socket.on('game_update' ,function(payload){
                             socket.emit('play_token',payload);
                         };
                     }(row,column));
-                }
-
-                else{
-                    $('#'+row+'_'+column).removeClass('hovered_over');
                 }
             }
         }
@@ -479,6 +500,6 @@ socket.on('game_over' ,function(payload){
     }
 
     // If game is over, put in a button to jump to new page
-    $('#game_over').html('<h1> Game over</h1><h2>'+payload.who_won+' won!</h2>');
-    $('#game_over').append('<a href="lobby.html?username='+username+'" class="btn btn-success btn-lg active" role="button" aria-pressed="true">Return to Lobby</a>');
+    $('#game_over').html('<div class="alert alert-success" role="alert"><h4 class="alert-heading">Game over</h4><p class="text-capitalize">'+payload.who_won+' won!</p></div>');
+    $('#game_over').append('<a href="lobby.html?username='+username+'" class="btn btn-outline-primary btn-sm" role="button" aria-pressed="true">Return to Lobby</a>');
 });
