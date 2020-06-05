@@ -290,7 +290,7 @@ function makePlayButton(socket_id){
 // Make engaged button function
 
 function makeEngagedButton(){
-    var newHTML = '<button type=\'button\' class=\'btn btn-lg btn-outline-danger btn-block\' style=\'font-size:1rem;\'>Engaged</button>';
+    var newHTML = '<button type=\'button\' class=\'btn btn-lg btn-warning btn-block\' disabled style=\'font-size:1rem;\'><span class=\'spinner-border spinner-border-sm text-light\' role=\'status\' aria-hidden=\'true\'></span></button>';
     var newNode = $(newHTML);
     return(newNode);
 }
@@ -360,7 +360,7 @@ socket.on('game_update' ,function(payload){
     }
 
     $('#my_color').html('<h5 id="my_color" class="mt-3"><span class="badge-info badge badge-pill text-capitalize">My token color: '+my_color+'</span></h5>');
-    $('#my_color').append('<div class="alert alert-info text-capitalize" role="alert">'+payload.game.whose_turn+' player\'s turn.</div>');
+    $('#my_color').append('<div class="alert alert-info text-capitalize text-sm" style="font-size:.85rem;" role="alert">'+payload.game.whose_turn+' token\'s turn.</div>');
 
     clearInterval(interval_timer);
     interval_timer = setInterval(function(last_time){
