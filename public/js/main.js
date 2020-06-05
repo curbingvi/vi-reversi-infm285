@@ -268,7 +268,7 @@ function makeInviteButton(socket_id){
 // Make invited button function
 
 function makeInvitedButton(socket_id){
-    var newHTML = '<button type=\'button\' class=\'btn btn-primary\'>Invited</button>';
+    var newHTML = '<button type=\'button\' class=\'btn btn-lg btn-info btn-block\' style=\'font-size:1rem;\'>Uninvite</button>';
     var newNode = $(newHTML);
     newNode.click(function(){
         uninvite(socket_id);
@@ -279,7 +279,7 @@ function makeInvitedButton(socket_id){
 // Make play button function
 
 function makePlayButton(socket_id){
-    var newHTML = '<button type=\'button\' class=\'btn btn-success\'>Play</button>';
+    var newHTML = '<button type=\'button\' class=\'btn btn-lg btn-success btn-block\' style=\'font-size:1rem;\'>Play</button>';
     var newNode = $(newHTML);
     newNode.click(function(){
         game_start(socket_id);
@@ -290,7 +290,7 @@ function makePlayButton(socket_id){
 // Make engaged button function
 
 function makeEngagedButton(){
-    var newHTML = '<button type=\'button\' class=\'btn btn-danger\'>Engaged</button>';
+    var newHTML = '<button type=\'button\' class=\'btn btn-lg btn-outline-danger btn-block\' style=\'font-size:1rem;\'>Engaged</button>';
     var newNode = $(newHTML);
     return(newNode);
 }
